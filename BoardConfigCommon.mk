@@ -24,10 +24,7 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
-COMMON_GLOBAL_CFLAGS += -DLGE_MSM8960
-
-# Include path
-TARGET_SPECIFIC_HEADER_PATH := device/lge/msm8960-common/include
+COMMON_GLOBAL_CFLAGS += -DLGE_MSM8960 -DNEED_UMS_ENABLE -DENABLE_UMS_WITH_DATAMEDIA
 
 # Bootloader
 TARGET_NO_BOOTLOADER := true
@@ -70,7 +67,6 @@ TARGET_USES_ION_AUDIO := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-TARGET_CUSTOM_BLUEDROID := ../../../device/lge/msm8960-common/bluetooth/bluetooth.c
 
 # FM radio
 #BOARD_HAVE_FM_RADIO := true
@@ -89,16 +85,6 @@ TARGET_USES_ION := true
 #TARGET_USES_OVERLAY := true
 #TARGET_QCOM_HDMI_OUT := true
 BOARD_EGL_CFG := device/lge/msm8960-common/configs/egl.cfg
-
-# Wifi
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_WLAN_DEVICE                := qcwcn
-WIFI_DRIVER_FW_PATH_STA          := "sta"
-WIFI_DRIVER_FW_PATH_AP           := "ap"
-WIFI_DRIVER_FW_PATH_P2P          := "p2p"
-
 
 # Webkit
 ENABLE_WEBGL := true

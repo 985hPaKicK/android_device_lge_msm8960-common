@@ -4,8 +4,10 @@ export PATH
 
 chmod 777 /system/etc/init.qcom.modem_links.sh
 chmod 777 /system/etc/init.qcom.mdm_links.sh
+chmod 777 /system/etc/init.qcom.thermald_conf.sh
 /system/etc/init.qcom.modem_links.sh
 /system/etc/init.qcom.mdm_links.sh
+/system/etc/init.qcom.thermald_conf.sh
 
 busybox killall -9 ueventd
 busybox mount -o rw,remount /

@@ -14,37 +14,25 @@
 # limitations under the License.
 #
 
-# Boot ramdisk setup
-PRODUCT_COPY_FILES += \
-    device/lge/msm8960-common/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/lge/msm8960-common/ramdisk/init.lge.cmm.usb.sh:root/init.lge.cmm.usb.sh \
-    device/lge/msm8960-common/ramdisk/init.lge.usb.sh:root/init.lge.usb.sh \
-    device/lge/msm8960-common/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh \
-
-# Qualcomm scripts
-PRODUCT_COPY_FILES += \
-    device/lge/msm8960-common/configs/init.lge_dut.bt.sh:/system/etc/init.lge_dut.bt.sh \
-    device/lge/msm8960-common/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    device/lge/msm8960-common/configs/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
-    device/lge/msm8960-common/configs/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
-    device/lge/msm8960-common/configs/init.qcom.ftm_module.sh:/system/etc/init.qcom.ftm_module.sh \
-    device/lge/msm8960-common/configs/init.qcom.ftm_module_out.sh:/system/etc/init.qcom.ftm_module_out.sh \
-    device/lge/msm8960-common/configs/init.qcom.mdm_links.sh:/system/etc/init.qcom.mdm_links.sh \
-    device/lge/msm8960-common/configs/init.qcom.modem_links.sh:/system/etc/init.qcom.modem_links.sh \
-    device/lge/msm8960-common/configs/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
-    device/lge/msm8960-common/configs/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
-    device/lge/msm8960-common/configs/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh \
-    device/lge/msm8960-common/configs/init.wlan-on-off.sh:/system/etc/init.wlan-on-off.sh
-
 # 2nd-init
 PRODUCT_COPY_FILES += \
     device/lge/msm8960-common/2nd-init/2nd-init:/system/xbin/2nd-init \
-    device/lge/msm8960-common/2nd-init/cm10.sh:/system/xbin/cm10.sh \
     device/lge/msm8960-common/2nd-init/mksh2:/system/xbin/mksh2 \
+    device/lge/msm8960-common/2nd-init/cm10.sh:/system/xbin/cm10.sh \
     device/lge/msm8960-common/2nd-init/recovery.sh:/system/xbin/recovery.sh \
-    device/lge/msm8960-common/2nd-init/recovery.tar:/system/xbin/recovery.tar \
     device/lge/msm8960-common/2nd-init/taskset:/system/xbin/taskset
 
+# Media config
+PRODUCT_COPY_FILES += \
+    device/lge/msm8960-common/configs/media_codecs.xml:system/etc/media_codecs.xml
+
+# apn config
+PRODUCT_COPY_FILES += \
+    device/lge/msm8960-common/configs/apns-conf.xml:/system/etc/apns-conf.xml
+
+# Sound configs
+PRODUCT_COPY_FILES += \
+    device/lge/msm8960-common/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -65,7 +53,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.compass.xml
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.compass.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -99,10 +88,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
-# NFCEE access control
-PRODUCT_COPY_FILES += \
-    device/lge/msm8960-common/configs/nfcee_access.xml:system/etc/nfcee_access.xml
-
 PRODUCT_PACKAGES += \
     nfc.msm8960 \
     libnfc \
@@ -125,10 +110,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hdmid
 
-# hostapd
-PRODUCT_PACKAGES += \
-    hostapd
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -145,28 +126,29 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
-# MSM8960 firmware
+# Jellybean Adreno firmware
 PRODUCT_COPY_FILES += \
     device/lge/msm8960-common/firmware/a225p5_pm4.fw:/system/etc/firmware/a225p5_pm4.fw \
     device/lge/msm8960-common/firmware/a225_pfp.fw:/system/etc/firmware/a225_pfp.fw \
     device/lge/msm8960-common/firmware/a225_pm4.fw:/system/etc/firmware/a225_pm4.fw \
-    device/lge/msm8960-common/firmware/a300_pfp.fw:/system/etc/firmware/a225_pfp.fw \
-    device/lge/msm8960-common/firmware/a300_pm4.fw:/system/etc/firmware/a225_pm4.fw \
-    device/lge/msm8960-common/firmware/cyttsp_8960_cdp.hex:/system/etc/firmware/cyttsp_8960_cdp.hex \
     device/lge/msm8960-common/firmware/leia_pfp_470.fw:/system/etc/firmware/leia_pfp_470.fw \
     device/lge/msm8960-common/firmware/leia_pm4_470.fw:/system/etc/firmware/leia_pm4_470.fw \
-    device/lge/msm8960-common/firmware/vidc_1080p.fw:/system/etc/firmware/vidc_1080p.fw
+    device/lge/msm8960-common/firmware/yamato_pfp.fw:/system/etc/firmware/yamato_pfp.fw \
+    device/lge/msm8960-common/firmware/yamato_pm4.fw:/system/etc/firmware/yamato_pm4.fw \
 
-# Wifi firmware
+# Jellybean Adreno libs
 PRODUCT_COPY_FILES += \
-    device/lge/msm8960-common/firmware/WCNSS_cfg.dat:/system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    device/lge/msm8960-common/firmware/WCNSS_qcom_cfg.ini:/system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-    device/lge/msm8960-common/firmware/WCNSS_qcom_wlan_nv.bin:/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
-
-# Video (Temp)
-PRODUCT_COPY_FILES += \
-    device/lge/msm8960-common/prebuilt/libOmxVdec.so:/obj/lib/libOmxVdec.so \
-    device/lge/msm8960-common/prebuilt/libOmxVdec.so:/system/lib/libOmxVdec.so
+    device/lge/msm8960-common/jb_libs/lib/libc2d2_z180.so:/system/lib/libc2d2_z180.so \
+    device/lge/msm8960-common/jb_libs/lib/libC2D2.so:/system/lib/libC2D2.so \
+    device/lge/msm8960-common/jb_libs/lib/libgsl.so:/system/lib/libgsl.so \
+    device/lge/msm8960-common/jb_libs/lib/libOpenVG.so:/system/lib/libOpenVG.so \
+    device/lge/msm8960-common/jb_libs/lib/libsc-a2xx.so:/system/lib/libsc-a2xx.so \
+    device/lge/msm8960-common/jb_libs/egl/eglsubAndroid.so:/system/lib/egl/eglsubAndroid.so \
+    device/lge/msm8960-common/jb_libs/egl/libEGL_adreno200.so:/system/lib/egl/libEGL_adreno200.so \
+    device/lge/msm8960-common/jb_libs/egl/libGLESv1_CM_adreno200.so:/system/lib/egl/libGLESv1_CM_adreno200.so \
+    device/lge/msm8960-common/jb_libs/egl/libGLESv2_adreno200.so:/system/lib/egl/libGLESv2_adreno200.so \
+    device/lge/msm8960-common/jb_libs/egl/libGLESv2S3D_adreno200.so:/system/lib/egl/libGLESv2S3D_adreno200.so \
+    device/lge/msm8960-common/jb_libs/egl/libq3dtools_adreno200.so:/system/lib/egl/libq3dtools_adreno200.so
 
 # KoreanIME
 PRODUCT_COPY_FILES += \
